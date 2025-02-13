@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>cpp原子变量atomic详解 | ZHIYANG的小空间站</title><meta name="author" content="ZHIYANG"><meta name="copyright" content="ZHIYANG"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="C++原子变量atomic详解参考列表：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;599202353 https:&#x2F;&#x2F;cplusplus.com&#x2F;reference&#x2F;atomic&#x2F;atomic&#x2F;https:&#x2F;&#x2F;blog.csdn.net&#x2F;sinat_28305511&#x2F;article&#x2F;details&#x2F;131257757 简介C++中原子变量（atomic）是一种多线程编程中常用的同步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cpp原子变量atomic详解">
+<meta property="og:url" content="https://zhiyanga.netlify.app/2023/10/13/CPP/cpp%E5%8E%9F%E5%AD%90%E5%8F%98%E9%87%8Fatomic%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="ZHIYANG的小空间站">
+<meta property="og:description" content="C++原子变量atomic详解参考列表：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;599202353 https:&#x2F;&#x2F;cplusplus.com&#x2F;reference&#x2F;atomic&#x2F;atomic&#x2F;https:&#x2F;&#x2F;blog.csdn.net&#x2F;sinat_28305511&#x2F;article&#x2F;details&#x2F;131257757 简介C++中原子变量（atomic）是一种多线程编程中常用的同步">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhiyanga.netlify.app/img/head.jpg">
+<meta property="article:published_time" content="2023-10-13T00:57:34.000Z">
+<meta property="article:modified_time" content="2025-02-12T15:42:48.076Z">
+<meta property="article:author" content="ZHIYANG">
+<meta property="article:tag" content="atomic">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhiyanga.netlify.app/img/head.jpg"><link rel="shortcut icon" href="/img/head.jpg"><link rel="canonical" href="https://zhiyanga.netlify.app/2023/10/13/CPP/cpp%E5%8E%9F%E5%AD%90%E5%8F%98%E9%87%8Fatomic%E8%AF%A6%E8%A7%A3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-1JC3RGVZH7"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-1JC3RGVZH7');
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: ZHIYANG","link":"链接: ","source":"来源: ZHIYANG的小空间站","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'cpp原子变量atomic详解',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-12 23:42:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/cat.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/top.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="ZHIYANG的小空间站"><img class="site-icon" src="/img/head.jpg"/><span class="site-name">ZHIYANG的小空间站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">cpp原子变量atomic详解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-13T00:57:34.000Z" title="发表于 2023-10-13 08:57:34">2023-10-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-12T15:42:48.076Z" title="更新于 2025-02-12 23:42:48">2025-02-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C/">C++</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="cpp原子变量atomic详解"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="C-原子变量atomic详解"><a href="#C-原子变量atomic详解" class="headerlink" title="C++原子变量atomic详解"></a>C++原子变量atomic详解</h1><p>参考列表：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/599202353">https://zhuanlan.zhihu.com/p/599202353</a> <a target="_blank" rel="noopener" href="https://cplusplus.com/reference/atomic/atomic/">https://cplusplus.com/reference/atomic/atomic/</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_28305511/article/details/131257757">https://blog.csdn.net/sinat_28305511/article/details/131257757</a></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>C++中原子变量（atomic）是一种多线程编程中常用的同步机制，它能够确保对共享变量的操作在执行时不会被其他线程的操作干扰，从而避免竞态条件（race condition）和死锁（deadlock）等问题。</p>
+<p>原子变量可以看作是一种特殊的类型，它具有类似于普通变量的操作，但是这些操作都是原子级别的，即要么全部完成，要么全部未完成。C++标准库提供了丰富的原子类型，包括整型、指针、布尔值等，使用方法也非常简单，只需要通过std::atomic&lt;T&gt;定义一个原子变量即可，其中T表示变量的类型。</p>
+<p>在普通的变量中，并发的访问它可能会导致数据竞争，竞争的后果会导致操作过程不会按照正确的顺序进行操作。</p>
+<p>atomic对象可以通过指定不同的memory orders来控制其对其他非原子对象的访问顺序和可见性，从而实现线程安全。常用的memory orders包括：<br>memory_order_relaxed、<br>memory_order_acquire、<br>memory_order_release、<br>memory_order_acq_rel<br>memory_order_seq_cst等。</p>
+<h3 id="C-6种内存序"><a href="#C-6种内存序" class="headerlink" title="C++ 6种内存序"></a>C++ 6种内存序</h3><p>在多线程编程中，内存序可以帮助我们更好地控制多线程程序中的数据访问顺序。C++ 11引入了6种内存序，分别是 <code>memory_order_relaxed</code>、<code>memory_order_consume</code>、<code>memory_order_acquire</code>、<code>memory_order_release</code>、<code>memory_order_acq_rel</code> 和 <code>memory_order_seq_cst</code>。这些内存序提供了不同级别的同步保证，可以帮助我们在多线程程序中实现更精细的控制。</p>
+<ul>
+<li><code>memory_order_relaxed</code>: 最宽松的内存序，不提供任何同步保证。它只保证原子操作本身是原子的，但不保证操作之间的顺序。</li>
+<li><code>memory_order_consume</code>: 消费者内存序，用于同步依赖关系。它保证了依赖于原子操作结果的后续操作将按照正确的顺序执行。</li>
+<li><code>memory_order_acquire</code>: 获取内存序，用于同步对共享数据的访问。它保证了在获取操作之后对共享数据的所有读取操作都将看到最新的数据。</li>
+<li><code>memory_order_release</code>: 释放内存序，用于同步对共享数据的访问。它保证了在释放操作之前对共享数据的所有写入操作都已完成，并且对其他线程可见。</li>
+<li><code>memory_order_acq_rel</code>: 获取-释放内存序，结合了获取和释放两种内存序的特点。它既保证了获取操作之后对共享数据的所有读取操作都将看到最新的数据，又保证了在释放操作之前对共享数据的所有写入操作都已完成，并且对其他线程可见。</li>
+<li><code>memory_order_seq_cst</code>: 顺序一致性内存序，提供了最严格的同步保证。它保证了所有线程都将看到相同的操作顺序，并且所有原子操作都将按照程序顺序执行。</li>
+</ul>
+<h2 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>std::atomic::atomic</p>
+<blockquote>
+<p>（1）默认：使对象处于未初始化状态。 atomic() noexcept &#x3D; default;   <br><br>（2）初始化 ：使用val初始化对象。 constexpratomic (T val) noexcept; <br><br>（3）复制 [删除] ：无法复制&#x2F;移动对象。 atomic (const atomic&amp;) &#x3D; delete;</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::atmoic&lt;int&gt; count(0);</span><br></pre></td></tr></table></figure>
+<h3 id="is-lock-free函数"><a href="#is-lock-free函数" class="headerlink" title="is_lock_free函数"></a>is_lock_free函数</h3><p>is_lock_free用于检查当前atomic对象是否支持无锁操作，调用此成员函数不会启动任何数据竞争</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bool is_lock_free() const volatile noexcept;</span><br><span class="line">bool is_lock_free() const noexcept;</span><br></pre></td></tr></table></figure>
+<h4 id="std-atomic-flag"><a href="#std-atomic-flag" class="headerlink" title="std::atomic_flag"></a>std::atomic_flag</h4><p>std::atomic_flag 是 C++ 中的一个原子布尔类型，它用于实现原子锁操作。</p>
+<ol>
+<li>std::atomic_flag 默认是清除状态（false）。可以使用 ATOMIC_FLAG_INIT 宏进行初始化，例如：<code>std::atomic_flag flag = ATOMIC_FLAG_INIT</code>;</li>
+<li>std::atomic_flag 提供了两个成员函数 test_and_set() 和 clear() 来测试和设置标志位。test_and_set() 函数会将标志位置为 true，并返回之前的值；clear() 函数将标志位置为 false。</li>
+<li>std::atomic_flag 的 test_and_set() 和 clear() 操作是原子的，可以保证在多线程环境下正确执行。</li>
+<li>std::atomic_flag 只能表示两种状态，即 true 或 false，不能做其他比较操作。通常情况下，std::atomic_flag 被用作简单的互斥锁，而不是用来存储信息</li>
+</ol>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;atomic&gt;</span><br><span class="line">#include&lt;thread&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">std::atomic_flag flag = ATOMIC_FLAG_INIT; //初始状态为false</span><br><span class="line">void func(int id) &#123;</span><br><span class="line">    std::cout &lt;&lt; &quot;Thread  &quot; &lt;&lt; id &lt;&lt; &quot; start func&quot; &lt;&lt; std::endl;</span><br><span class="line">    while (flag.test_and_set(std::memory_order_acquire)) &#123;</span><br><span class="line">        std::cout &lt;&lt; &quot;Thread &quot;&lt;&lt; id &lt;&lt;&quot; is waiting&quot; &lt;&lt; std::endl;</span><br><span class="line">        // 等待其他线程释放锁</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; &quot;Thread &quot; &lt;&lt; id &lt;&lt; &quot; acquired the lock.&quot; &lt;&lt; std::endl;</span><br><span class="line">    // 模拟业务处理</span><br><span class="line">    //std::this_thread::sleep_for(std::chrono::seconds(1));</span><br><span class="line">    flag.clear(std::memory_order_release);  // 释放锁</span><br><span class="line">    std::cout &lt;&lt; &quot;Thread &quot; &lt;&lt; id &lt;&lt; &quot; released the lock.&quot; &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line">void _test() &#123;</span><br><span class="line">    std::cout &lt;&lt; flag.test_and_set(std::memory_order_acquire) &lt;&lt; std::endl;</span><br><span class="line">    flag.clear();</span><br><span class="line">    std::cout &lt;&lt; flag.test_and_set(std::memory_order_acquire) &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; flag.test_and_set(std::memory_order_acquire) &lt;&lt; std::endl;</span><br><span class="line">    //set后状态为true</span><br><span class="line">    flag.clear();</span><br><span class="line">    std::thread t1(func, 1);</span><br><span class="line">    std::thread t2(func, 2);</span><br><span class="line">    t1.join();</span><br><span class="line">    t2.join();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">0</span><br><span class="line">1</span><br><span class="line">Thread  Thread  2 start func</span><br><span class="line">Thread 2 acquired the lock.</span><br><span class="line">Thread 2 released the lock.</span><br><span class="line">1 start func</span><br><span class="line">Thread 1 acquired the lock.</span><br><span class="line">Thread 1 released the lock.</span><br></pre></td></tr></table></figure>
+<p>两个线程通过 std::atomic_flag 来争夺一个资源（即打印信息），只有一个线程能够获得锁，执行相应的操作。另一个线程需要等待锁被释放才能继续执行。使用test_and_set() 和 clear() 函数来测试和设置标志位，保证这些操作是原子的。</p>
+<h3 id="store函数"><a href="#store函数" class="headerlink" title="store函数"></a>store函数</h3><p>std::atomic<T>::store()用于将给定的值存储到原子对象中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">void store(T desired, std::memory_order order = std::memory_order_seq_cst) volatile noexcept;</span><br><span class="line">void store(T desired, std::memory_order order = std::memory_order_seq_cst) noexcept;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>desired</code>：要存储的值。</li>
+<li><code>order</code>：存储操作的内存顺序。默认是std::memory_order_seq_cst（顺序一致性）</li>
+</ul>
+<p>存储操作的内存顺序参数：</p>
+<table>
+<thead>
+<tr>
+<th>value</th>
+<th>内存顺序</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>memory_order_relaxed</td>
+<td>无序的内存访问</td>
+<td>不做任何同步，仅保证该原子类型变量的操作是原子化的，并不保证其对其他线程的可见性和正确性。</td>
+</tr>
+<tr>
+<td>memory_order_consume</td>
+<td>与消费者关系有关的顺序</td>
+<td>保证本次读取之前所有依赖于该原子类型变量值的操作都已经完成，但不保证其他线程对该变量的存储结果已经可见。</td>
+</tr>
+<tr>
+<td>memory_order_acquire</td>
+<td>获取关系的顺序</td>
+<td>保证本次读取之前所有先于该原子类型变量写入内存的操作都已经完成，并且其他线程对该变量的存储结果已经可见。</td>
+</tr>
+<tr>
+<td>memory_order_seq_cst</td>
+<td>顺序一致性的顺序</td>
+<td>保证本次操作以及之前和之后的所有原子操作都按照一个全局的内存顺序执行，从而保证多线程环境下对变量的读写的正确性和一致性。这是最常用的内存顺序。</td>
+</tr>
+<tr>
+<td>memory_order_release</td>
+<td>释放关系的顺序</td>
+<td>保证本次写入之后所有后于该原子类型变量写入内存的操作都已经完成，并且其他线程可以看到该变量的存储结果。</td>
+</tr>
+<tr>
+<td><em>详见简介 C++6种内存序</em></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>示例</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">std::atomic&lt;int&gt; atomic_int(0);</span><br><span class="line">std::cout &lt;&lt; &quot;Value stored in atomic object: &quot; &lt;&lt; atomic_int &lt;&lt; std::endl;</span><br><span class="line">int val = 10;</span><br><span class="line">atomic_int.store(val); //默认memory_order_seq_cst 顺序一致性</span><br><span class="line">std::cout &lt;&lt; &quot;Value stored in atomic object: &quot; &lt;&lt; atomic_int &lt;&lt; std::endl;</span><br><span class="line">val = 5;</span><br><span class="line">atomic_int.store(val);</span><br><span class="line">std::cout &lt;&lt; &quot;Value stored in atomic object: &quot; &lt;&lt; atomic_int &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Value stored in atomic object: 0</span><br><span class="line">Value stored in atomic object: 10</span><br><span class="line">Value stored in atomic object: 5</span><br></pre></td></tr></table></figure>
+
+
+<p>在多线程环境下使用原子变量和操作时，需要使用适当的内存顺序来保证数据的正确性和一致性。因此，store()函数中的order参数可以用来指定不同的内存顺序。如果不确定如何选择内存顺序，请使用默认值std::memory_order_seq_cst，它是最常用和最保险的。</p>
+<h3 id="load函数"><a href="#load函数" class="headerlink" title="load函数"></a>load函数</h3><p>load函数用于获取原子变量的当前值。它有以下两种形式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">T load(memory_order order = memory_order_seq_cst) const noexcept;</span><br><span class="line">operator T() const noexcept;</span><br></pre></td></tr></table></figure>
+<p>其中，第一种形式是显式调用load函数，第二种形式是通过重载类型转换运算符实现隐式调用。</p>
+<p>load函数的参数memory_order表示内存序，也就是对原子变量的读操作要遵循哪种内存模型。C++中定义了多种内存序，包括：</p>
+<ul>
+<li>memory_order_relaxed：最轻量级的内存序，不提供任何同步机制。</li>
+<li>memory_order_acquire：在本线程中，所有后面的读写操作必须在这个操作之后执行。</li>
+<li>memory_order_release：在本线程中，该操作之前的所有读写操作必须在这个操作之前执行。 </li>
+<li>memory_order_seq_cst：最严格的内存序，保证所有线程看到的读写操作的顺序都是一致的。</li>
+</ul>
+<p>使用load函数时，如果不指定memory_order，则默认为memory_order_seq_cst。 <br><br>load函数的返回值类型为T，即原子变量的类型。在使用load函数时需要指定类型参数T。如果使用第二种形式的load函数，则无需指定类型参数T，程序会自动根据上下文推断出类型。</p>
+<p>示例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">std::atomic&lt;int&gt; atomic_int(10);</span><br><span class="line">int x = atomic_int.load(std::memory_order_relaxed); // get value atomically</span><br><span class="line">int xx = int(atomic_int.load());</span><br><span class="line">std::cout &lt;&lt; x &lt;&lt; std::endl;</span><br><span class="line">std::cout &lt;&lt; xx &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">10</span><br><span class="line">10</span><br></pre></td></tr></table></figure>
+<h3 id="exchange函数"><a href="#exchange函数" class="headerlink" title="exchange函数"></a>exchange函数</h3><p>访问和修改包含的值，将包含的值替换并返回它前面的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">template&lt; class T &gt;</span><br><span class="line">T exchange( volatile std::atomic&lt;T&gt;* obj, T desired );</span><br></pre></td></tr></table></figure>
+<p>其中，obj参数指向需要替换值的atomic对象，desired参数为期望替换成的值。如果替换成功，则返回原来的值。</p>
+<p>整个操作是原子的（原子读-修改-写操作）：从读取（要返回）值的那一刻到此函数修改值的那一刻，该值不受其他线程的影响。<br>用例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">std::atomic&lt;bool&gt; ready(false);</span><br><span class="line">std::atomic&lt;bool&gt; winner(false);</span><br><span class="line">void count1m(int id) &#123;</span><br><span class="line">    while (!ready) &#123;&#125;                  // wait for the ready signal</span><br><span class="line">    for (int i = 0; i &lt; 1000000; ++i) &#123;&#125;   // go!, count to 1 million</span><br><span class="line">    if (!winner.exchange(true)) &#123; std::cout &lt;&lt; &quot;thread #&quot; &lt;&lt; id &lt;&lt; &quot; won!\n&quot;; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void _test() &#123;</span><br><span class="line">    //exchange</span><br><span class="line">    std::vector&lt;std::thread&gt; threads;</span><br><span class="line">    std::cout &lt;&lt; &quot;spawning 10 threads that count to 1 million...\n&quot;;</span><br><span class="line">    for (int i = 1; i &lt;= 10; ++i) threads.push_back(std::thread(count1m, i));</span><br><span class="line">    ready = true;</span><br><span class="line">    for (auto&amp; th : threads) th.join();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread #6 won!</span><br></pre></td></tr></table></figure>
+<h3 id="compare-exchange-weak函数"><a href="#compare-exchange-weak函数" class="headerlink" title="compare_exchange_weak函数"></a>compare_exchange_weak函数</h3><p>这个函数的作用是比较一个值和一个期望值是否相等，如果相等则将该值替换成一个新值，并返回true；否则不做任何操作并返回false。</p>
+<blockquote>
+<p>bool compare_exchange_weak (T&amp; expected, T val,memory_order sync &#x3D; memory_order_seq_cst) volatile noexcept;<br>bool compare_exchange_weak (T&amp; expected, T val,memory_order sync &#x3D; memory_order_seq_cst) noexcept;<br>bool compare_exchange_weak (T&amp; expected, T val,memory_order success, memory_order failure) volatile noexcept;<br>bool compare_exchange_weak (T&amp; expected, T val,memory_order success, memory_order failure) noexcept;</p>
+</blockquote>
+<p>参数说明</p>
+<ul>
+<li>expected：期望值的地址，也是输入参数，表示要比较的值；</li>
+<li>val：新值，也是输入参数，表示期望值等于该值时需要替换的值；</li>
+<li>success：表示函数执行成功时内存序的类型，默认为memory_order_seq_cst；</li>
+<li>failure：表示函数执行失败时内存序的类型，默认为memory_order_seq_cst。</li>
+</ul>
+<p>该函数的返回值为bool类型，表示操作是否成功。</p>
+<p>注意，compare_exchange_weak函数是一个弱化版本的原子操作函数，因为在某些平台上它可能会失败并重试。如果需要保证严格的原子性，则应该使用compare_exchange_strong函数。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;       // std::cout</span><br><span class="line">#include &lt;atomic&gt;         // std::atomic</span><br><span class="line">#include &lt;thread&gt;         // std::thread</span><br><span class="line">#include &lt;vector&gt;         // std::vector</span><br><span class="line"></span><br><span class="line">// a simple global linked list:</span><br><span class="line">struct Node &#123; int value; Node* next; &#125;;</span><br><span class="line">std::atomic&lt;Node*&gt; list_head (nullptr);</span><br><span class="line"></span><br><span class="line">void append (int val) &#123;     // append an element to the list</span><br><span class="line">  Node* oldHead = list_head;</span><br><span class="line">  Node* newNode = new Node &#123;val,oldHead&#125;;</span><br><span class="line"></span><br><span class="line">  // what follows is equivalent to: list_head = newNode, but in a thread-safe way:</span><br><span class="line">  while (!list_head.compare_exchange_weak(oldHead,newNode))</span><br><span class="line">    newNode-&gt;next = oldHead;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main ()</span><br><span class="line">&#123;</span><br><span class="line">  // spawn 10 threads to fill the linked list:</span><br><span class="line">  std::vector&lt;std::thread&gt; threads;</span><br><span class="line">  for (int i=0; i&lt;10; ++i) threads.push_back(std::thread(append,i));</span><br><span class="line">  for (auto&amp; th : threads) th.join();</span><br><span class="line"></span><br><span class="line">  // print contents:</span><br><span class="line">  for (Node* it = list_head; it!=nullptr; it=it-&gt;next)</span><br><span class="line">    std::cout &lt;&lt; &#x27; &#x27; &lt;&lt; it-&gt;value;</span><br><span class="line">  std::cout &lt;&lt; &#x27;\n&#x27;;</span><br><span class="line"></span><br><span class="line">  // cleanup:</span><br><span class="line">  Node* it; while (it=list_head) &#123;list_head=it-&gt;next; delete it;&#125;</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="compare-exchange-strong函数"><a href="#compare-exchange-strong函数" class="headerlink" title="compare_exchange_strong函数"></a>compare_exchange_strong函数</h3><p>这个函数的作用和compare_exchange_weak类似，都是比较一个值和一个期望值是否相等，并且在相等时将该值替换成一个新值。不同的是，compare_exchange_strong会保证原子性，并且如果比较失败则会返回当前值。</p>
+<blockquote>
+<p>bool compare_exchange_strong(T&amp; expected, T desired,<br>                             memory_order success &#x3D; memory_order_seq_cst,<br>                             memory_order failure &#x3D; memory_order_seq_cst) noexcept;</p>
+</blockquote>
+<ul>
+<li>expected：期望值的地址，也是输入参数，表示要比较的值；</li>
+<li>desired：新值，也是输入参数，表示期望值等于该值时需要替换的值；</li>
+<li>success：表示函数执行成功时内存序的类型，默认为memory_order_seq_cst；</li>
+<li>failure：表示函数执行失败时内存序的类型，默认为memory_order_seq_cst。</li>
+</ul>
+<p>该函数的返回值为bool类型，表示操作是否成功。</p>
+<p>注意，compare_exchange_strong函数保证原子性，因此它的效率可能比compare_exchange_weak低。在使用时应根据具体情况选择适合的函数。</p>
+<h3 id="专业化支持的操作"><a href="#专业化支持的操作" class="headerlink" title="专业化支持的操作"></a>专业化支持的操作</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fetch_add</td>
+<td>添加到包含的值并返回它在操作之前具有的值</td>
+</tr>
+<tr>
+<td>fetch_sub</td>
+<td>从包含的值中减去，并返回它在操作之前的值</td>
+</tr>
+<tr>
+<td>fetch_and</td>
+<td>读取包含的值，并将其替换为在读取值和 之间执行按位 AND 运算的结果</td>
+</tr>
+<tr>
+<td>fetch_or</td>
+<td>读取包含的值，并将其替换为在读取值和 之间执行按位 OR 运算的结果</td>
+</tr>
+<tr>
+<td>fetch_xor</td>
+<td>读取包含的值，并将其替换为在读取值和 之间执行按位 XOR 运算的结果</td>
+</tr>
+<tr>
+<td>使用示例</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// atomic::load/store example</span><br><span class="line">#include &lt;iostream&gt; // std::cout</span><br><span class="line">#include &lt;atomic&gt; // std::atomic, std::memory_order_relaxed</span><br><span class="line">#include &lt;thread&gt; // std::thread</span><br><span class="line">//std::atomic&lt;int&gt; count = 0;//错误初始化</span><br><span class="line">std::atomic&lt;int&gt; count(0); // 准确初始化</span><br><span class="line">void set_count(int x)</span><br><span class="line">&#123;</span><br><span class="line">	std::cout &lt;&lt; &quot;set_count:&quot; &lt;&lt; x &lt;&lt; std::endl;</span><br><span class="line">	count.store(x, std::memory_order_relaxed); // set value atomically</span><br><span class="line">&#125;</span><br><span class="line">void print_count()</span><br><span class="line">&#123;</span><br><span class="line">	int x;</span><br><span class="line">	do &#123;</span><br><span class="line">		x = count.load(std::memory_order_relaxed); // get value atomically</span><br><span class="line">	&#125; while (x==0);</span><br><span class="line">	std::cout &lt;&lt; &quot;count: &quot; &lt;&lt; x &lt;&lt; &#x27;\n&#x27;;</span><br><span class="line">&#125;</span><br><span class="line">int main ()</span><br><span class="line">&#123;</span><br><span class="line">	std::thread t1 (print_count);</span><br><span class="line">	std::thread t2 (set_count, 10);</span><br><span class="line">	t1.join();</span><br><span class="line">	t2.join();</span><br><span class="line">	std::cout &lt;&lt; &quot;main finish\n&quot;;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>原子操作在多线程中可以保证线程安全，而且效率会比互斥量好些。</p>
+<p>原子变量支持的基本操作有：</p>
+<ul>
+<li>加法：a +&#x3D; n或者a.fetch_add(n)</li>
+<li>减法：a -&#x3D; n或者a.fetch_sub(n)</li>
+<li>与、或、异或运算：a &amp;&#x3D; b、a |&#x3D; b、a ^&#x3D; b或者a.fetch_and(b)、a.fetch_or(b)、a.fetch_xor(b)</li>
+<li>自增、自减运算：++a、–a、a++、a–或者a.fetch_add(1)、a.fetch_sub(1)</li>
+<li>交换：a.exchange(b)返回原来的值，将a设置为b</li>
+<li>比较并交换：a.compare_exchange_strong(b, c)或者a.compare_exchange_weak(b, c)，如果a的值等于b，则将a设置为c，返回true，否则返回false。</li>
+</ul>
+<p>尽管原子变量是多线程编程中非常重要的同步机制，但是它也存在一些局限性。具体来说，原子变量只能保证单个变量的原子性操作，而不能保证多个变量之间的同步。此外，原子变量也无法解决数据竞争（data race）等问题，因此在使用时需要注意避免这些问题的出现。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://zhiyanga.netlify.app">ZHIYANG</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zhiyanga.netlify.app/2023/10/13/CPP/cpp%E5%8E%9F%E5%AD%90%E5%8F%98%E9%87%8Fatomic%E8%AF%A6%E8%A7%A3/">https://zhiyanga.netlify.app/2023/10/13/CPP/cpp原子变量atomic详解/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhiyanga.netlify.app" target="_blank">ZHIYANG的小空间站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/atomic/">atomic</a></div><div class="post_share"><div class="social-share" data-image="/img/head.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/16/CPP/IO%E5%AE%8C%E6%88%90%E7%AB%AF%E5%8F%A3%EF%BC%88iocp%EF%BC%89/" title="完成端口（iocp）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">完成端口（iocp）</div></div></a></div><div class="next-post pull-right"><a href="/2023/08/11/tips/docker%E5%85%A5%E9%97%A8/" title="docker入门"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">docker入门</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ZHIYANG</div><div class="author-info__description">要充满干劲^.^</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/haust-Andy"><i class="fab fa-github"></i><span>来找我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/haust-Andy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1481635832@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #a39ea2;"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1481635832&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fa-brands fa-qq" style="color: #badaf1;"></i></a><a class="social-icon" href="https://space.bilibili.com/23876943" target="_blank" title="BiliBili"><i class="fab fa-bilibili" style="color: #ff6698;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">正在尝试改变世界!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E5%8E%9F%E5%AD%90%E5%8F%98%E9%87%8Fatomic%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">C++原子变量atomic详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C-6%E7%A7%8D%E5%86%85%E5%AD%98%E5%BA%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">C++ 6种内存序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">成员函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#is-lock-free%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text">is_lock_free函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#std-atomic-flag"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">std::atomic_flag</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#store%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.3.</span> <span class="toc-text">store函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#load%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.4.</span> <span class="toc-text">load函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exchange%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.5.</span> <span class="toc-text">exchange函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#compare-exchange-weak%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.6.</span> <span class="toc-text">compare_exchange_weak函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#compare-exchange-strong%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.7.</span> <span class="toc-text">compare_exchange_strong函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%93%E4%B8%9A%E5%8C%96%E6%94%AF%E6%8C%81%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.8.</span> <span class="toc-text">专业化支持的操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/11/tips/ubuntu%E9%85%8D%E7%BD%AEcpp%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5vs%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="ubuntu配置cpp远程连接vs开发环境">ubuntu配置cpp远程连接vs开发环境</a><time datetime="2024-01-10T16:00:00.000Z" title="发表于 2024-01-11 00:00:00">2024-01-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/17/CPP/%E4%B8%80%E7%A7%8Dwindows%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%86%99%E6%B3%95/" title="一种windows线程池写法">一种windows线程池写法</a><time datetime="2023-10-17T02:23:50.000Z" title="发表于 2023-10-17 10:23:50">2023-10-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/CPP/IO%E5%AE%8C%E6%88%90%E7%AB%AF%E5%8F%A3%EF%BC%88iocp%EF%BC%89/" title="完成端口（iocp）">完成端口（iocp）</a><time datetime="2023-10-16T07:42:22.000Z" title="发表于 2023-10-16 15:42:22">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/13/CPP/cpp%E5%8E%9F%E5%AD%90%E5%8F%98%E9%87%8Fatomic%E8%AF%A6%E8%A7%A3/" title="cpp原子变量atomic详解">cpp原子变量atomic详解</a><time datetime="2023-10-13T00:57:34.000Z" title="发表于 2023-10-13 08:57:34">2023-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/11/tips/docker%E5%85%A5%E9%97%A8/" title="docker入门">docker入门</a><time datetime="2023-08-11T06:38:24.000Z" title="发表于 2023-08-11 14:38:24">2023-08-11</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/top.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By ZHIYANG</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">你好，欢迎来到我的世界！：）</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  function abcjsInit() {
+    function abcjsFn() {
+      for (let abcContainer of document.getElementsByClassName("abc-music-sheet")) {
+        ABCJS.renderAbc(abcContainer, abcContainer.innerHTML, {responsive: 'resize'})
+      }
+    }
+    
+    typeof ABCJS === 'object' ? abcjsFn()
+      : getScript('https://cdn.jsdelivr.net/npm/abcjs/dist/abcjs-basic-min.min.js').then(abcjsFn)
+  }
+
+  window.pjax ? abcjsInit() : document.addEventListener('DOMContentLoaded', abcjsInit)
+})()</script></div><script async src="https://npm.elemecdn.com/tzy-blog/lib/js/other/sakura.js"></script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="6,666,666666" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

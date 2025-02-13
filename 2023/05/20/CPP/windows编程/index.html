@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>windows编程 | ZHIYANG的小空间站</title><meta name="author" content="ZHIYANG"><meta name="copyright" content="ZHIYANG"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="基础知识程序三种开发方式：SDK方式开发、MFC方式开发、托管方式开发三种方式都是基于消息机制开发 Windows数据类型DWORD、DWORD32——32字节无符号整型数据DWORD64——64字节无符号整型数据INT、INT32、LONG32——32位符号整型数据类型INT_PTR——指向INT类型数据的指针类型INT64、LONG64——64位符号整型 参数类LPARAM——消息的L参数WP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows编程">
+<meta property="og:url" content="https://zhiyanga.netlify.app/2023/05/20/CPP/windows%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="ZHIYANG的小空间站">
+<meta property="og:description" content="基础知识程序三种开发方式：SDK方式开发、MFC方式开发、托管方式开发三种方式都是基于消息机制开发 Windows数据类型DWORD、DWORD32——32字节无符号整型数据DWORD64——64字节无符号整型数据INT、INT32、LONG32——32位符号整型数据类型INT_PTR——指向INT类型数据的指针类型INT64、LONG64——64位符号整型 参数类LPARAM——消息的L参数WP">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhiyanga.netlify.app/img/head.jpg">
+<meta property="article:published_time" content="2023-05-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-12T15:42:48.076Z">
+<meta property="article:author" content="ZHIYANG">
+<meta property="article:tag" content="windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhiyanga.netlify.app/img/head.jpg"><link rel="shortcut icon" href="/img/head.jpg"><link rel="canonical" href="https://zhiyanga.netlify.app/2023/05/20/CPP/windows%E7%BC%96%E7%A8%8B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-1JC3RGVZH7"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-1JC3RGVZH7');
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: ZHIYANG","link":"链接: ","source":"来源: ZHIYANG的小空间站","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'windows编程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-12 23:42:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/cat.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/top.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="ZHIYANG的小空间站"><img class="site-icon" src="/img/head.jpg"/><span class="site-name">ZHIYANG的小空间站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">windows编程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-19T16:00:00.000Z" title="发表于 2023-05-20 00:00:00">2023-05-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-12T15:42:48.076Z" title="更新于 2025-02-12 23:42:48">2025-02-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C/">C++</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">966</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="windows编程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h3 id="程序三种开发方式："><a href="#程序三种开发方式：" class="headerlink" title="程序三种开发方式："></a>程序三种开发方式：</h3><p>SDK方式开发、MFC方式开发、托管方式开发<br>三种方式都是基于消息机制开发</p>
+<h3 id="Windows数据类型"><a href="#Windows数据类型" class="headerlink" title="Windows数据类型"></a>Windows数据类型</h3><p>DWORD、DWORD32——32字节无符号整型数据<br><br>DWORD64——64字节无符号整型数据<br><br>INT、INT32、LONG32——32位符号整型数据类型<br><br>INT_PTR——指向INT类型数据的指针类型<br><br>INT64、LONG64——64位符号整型<br></p>
+<h4 id="参数类"><a href="#参数类" class="headerlink" title="参数类"></a>参数类</h4><p>LPARAM——消息的L参数<br><br>WPARAM——消息的W参数<br><br>LPCSTR——Windows，ANSI，字符串常量<br><br>LPCTSTR——根据环境配置，如果定义了UNICODE宏，则是LPCWSTR类型，否则是LPCSTR类型<br><br>LPCWSTR——UNICODE字符串常量<br><br>LPDWORD——指向DWORD类型数据的指针<br><br>LPSTR——Window，ANSI，字符串变量<br><br>LPTSTR——根据环境配置，如果定义了UNICODE，则是LPWSTR类型，否则是LPSTR类型<br><br>LPWSTR——UNICODE字符串变量<br><br>SIZE_T——表示内存大小，以字节为单位，其最大值是CPU最大寻址范围<br><br>TCHAR——如果定义了UNICODE，则为WCHAR，否则为CHAR<br><br>WCHAR——16位Unicode字符<br></p>
+<h4 id="句柄类"><a href="#句柄类" class="headerlink" title="句柄类"></a>句柄类</h4><p>HANDLE——对象的句柄，最基本的句柄类型<br><br>HICON——图标的句柄<br><br>HINSTANCE——程序实例的句柄<br><br>HKEY——注册表键的句柄<br><br>HMODULE——模块的句柄<br><br>HWND——窗口的句柄<br></p>
+<table><tr><td> 前缀 </td><td>含义</td><td>前缀</td><td>含义</td></tr>
+    <tr><td> a </td><td>数组 array</td><td> b </td><td>布尔值 bool</td></tr> 
+    <tr><td> by </td><td>无符号字符(字节)</td><td> c </td><td>字符(字节)</td></tr>
+    <tr><td> cb </td><td>字节计数</td><td> rgb </td><td>保存颜色值的长整型</td></tr>
+    <tr><td> cx,cy </td><td>短整型(计算x,y的长度)</td><td> dw </td><td>无符号长整型</td></tr>
+    <tr><td> fn </td><td>函数</td><td> h </td><td>句柄</td></tr>
+    <tr><td> i </td><td>整形(integer)</td><td> m_ </td><td>类的数据成员member</td></tr>
+    <tr><td> n </td><td>短整型或整型</td><td> np </td><td>近指针</td></tr>
+    <tr><td> p </td><td>指针(pointer)</td><td> l </td><td>长整型(long)</td></tr>
+    <tr><td> lp </td><td>长指针</td><td> s </td><td>字符串string</td></tr>
+    <tr><td> sz </td><td>以零结尾的字符串</td><td> tm </td><td>正文大小</td></tr>
+    <tr><td> w </td><td>无符号整型</td><td> x,y </td><td>无符号整型(表示x,y的坐标)</td></tr>
+</table>
+
+
+
+<h2 id="Windows消息循环"><a href="#Windows消息循环" class="headerlink" title="Windows消息循环"></a><em><strong>Windows消息循环</strong></em></h2><h3 id="消息来源："><a href="#消息来源：" class="headerlink" title="消息来源："></a>消息来源：</h3><p>操作系统产生的消息<br><br>用户触发事件消息<br><br>由消息产生消息<br></p>
+<h3 id="消息常见定义"><a href="#消息常见定义" class="headerlink" title="消息常见定义"></a>消息常见定义</h3><h4 id="预定义消息"><a href="#预定义消息" class="headerlink" title="预定义消息"></a>预定义消息</h4><p>普通窗口消息WM<br><br>设备消息DBT<br><br>按钮消息BM<br></p>
+<h4 id="自定义消息-WM-USER-1"><a href="#自定义消息-WM-USER-1" class="headerlink" title="自定义消息 WM_USER + 1"></a>自定义消息 WM_USER + 1</h4><h3 id="消息结构"><a href="#消息结构" class="headerlink" title="消息结构"></a>消息结构</h3><h4 id="MSG"><a href="#MSG" class="headerlink" title="MSG"></a>MSG</h4><p>窗口句柄、消息类型、高位参数、地位参数、时间、xy轴</p>
+<h3 id="程序骨架"><a href="#程序骨架" class="headerlink" title="程序骨架"></a>程序骨架</h3><p>设计窗口类&#x3D;&gt;注册窗口类&#x3D;&gt;创建窗口&#x3D;&gt;显示以及更新窗口&#x3D;&gt;消息循环</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;windows.h&gt;</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">LPCTSTR clsName = (LPCTSTR)&quot;My&quot;;</span><br><span class="line">LPCTSTR msgName = (LPCTSTR)&quot;hhhhhh&quot;;</span><br><span class="line"></span><br><span class="line">int WINAPI WinMain(</span><br><span class="line">    _In_ HINSTANCE hInstance,</span><br><span class="line">    _In_opt_ HINSTANCE hPrevInstance,</span><br><span class="line">    _In_ LPSTR lpCmdLine,</span><br><span class="line">    _In_ int nShowCmd</span><br><span class="line">) &#123;</span><br><span class="line">    //定义和配置窗口</span><br><span class="line">    WNDCLASS wndcls;</span><br><span class="line">    wndcls.cbClsExtra = NULL;</span><br><span class="line">    wndcls.cbWndExtra = NULL;</span><br><span class="line">    wndcls.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);</span><br><span class="line">    wndcls.hCursor = LoadCursor(NULL, IDC_ARROW);</span><br><span class="line">    wndcls.hIcon = LoadIcon(NULL, IDI_APPLICATION);</span><br><span class="line">    wndcls.hInstance = hInstance;</span><br><span class="line">    wndcls.lpfnWndProc = MyMinProc;</span><br><span class="line">    //定义窗口代号</span><br><span class="line">    wndcls.lpszClassName = clsName;</span><br><span class="line">    wndcls.lpszMenuName = NULL;</span><br><span class="line">    wndcls.style = CS_HREDRAW | CS_VREDRAW;</span><br><span class="line"></span><br><span class="line">    //注册窗口类</span><br><span class="line">    RegisterClass(&amp;wndcls);</span><br><span class="line"></span><br><span class="line">    //创建窗口</span><br><span class="line">    HWND hwnd;</span><br><span class="line">    hwnd = CreateWindow(clsName, msgName, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, hInstance, NULL);</span><br><span class="line"></span><br><span class="line">    //显示和刷新窗口</span><br><span class="line">    ShowWindow(hwnd, SW_SHOWNA);</span><br><span class="line">    UpdateWindow(hwnd);</span><br><span class="line"></span><br><span class="line">    //消息循环 GetMessage只有在接收到WM_QUIT才会返回0</span><br><span class="line">    //TranslateMessage 翻译消息WM_KEYDOWN W</span><br><span class="line">    MSG msg;</span><br><span class="line">    while (GetMessage(&amp;msg,NULL,NULL,NULL))</span><br><span class="line">    &#123;</span><br><span class="line">        TranslateMessage(&amp;msg);//消息转换</span><br><span class="line">        DispatchMessage(&amp;msg);//消息分发</span><br><span class="line">    &#125;</span><br><span class="line">    return msg.wParam;</span><br><span class="line">&#125;</span><br><span class="line">LRESULT CALLBACK MyMinProc(</span><br><span class="line">    HWND hwnd,</span><br><span class="line">    UINT uMsg, //消息类型</span><br><span class="line">    WPARAM wParam,</span><br><span class="line">    LPARAM lParam</span><br><span class="line">) &#123;</span><br><span class="line">    //uMsg消息类型</span><br><span class="line">    int ret;</span><br><span class="line">    HDC hdc;</span><br><span class="line">    switch (uMsg) &#123;</span><br><span class="line">    case WM_CHAR:</span><br><span class="line">        char szChar[20];</span><br><span class="line">        sprintf_s(szChar, &quot;您刚才按下了：%c&quot;, wParam);</span><br><span class="line">        MessageBox(hwnd, szChar,&quot;char&quot;,NULL);</span><br><span class="line">        break;</span><br><span class="line">    case WM_LBUTTONDOWN:</span><br><span class="line">        MessageBox(hwnd, &quot;检测鼠标左键&quot;,&quot;msg&quot;,NULL);</span><br><span class="line">    case WM_PAINT:</span><br><span class="line">        PAINTSTRUCT ps;</span><br><span class="line">        hdc = BeginPaint(hwnd, &amp;ps);</span><br><span class="line">        TextOut(hdc, 0, 0, &quot;www.baidu.com&quot;, strlen(&quot;www.baidu.com&quot;));</span><br><span class="line">        EndPaint(hwnd, &amp;ps);</span><br><span class="line">        MessageBox(hwnd, &quot;重绘&quot;,&quot;msg&quot;, NULL);</span><br><span class="line">        break;</span><br><span class="line">    case WM_CLOSE:</span><br><span class="line">        ret = MessageBox(hwnd, &quot;是否真的关闭&quot;, &quot;msg&quot;, MB_YESNO);</span><br><span class="line">        if (ret = IDYES) &#123;</span><br><span class="line">            DestroyWindow(hwnd);</span><br><span class="line">        &#125;</span><br><span class="line">        break;</span><br><span class="line">    case WM_DESTROY:</span><br><span class="line">        PostQuitMessage(0);</span><br><span class="line">        break;</span><br><span class="line">    default:</span><br><span class="line">        return DefWindowProc(hwnd,  uMsg, wParam, lParam);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主要函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> int WinMain()&#123;</span><br><span class="line">    // 设计窗口外观及交互响应，注册，申请专利</span><br><span class="line">    RegisterClass(...)注册窗口类</span><br><span class="line">    CreateWindow(...)// 创建窗口</span><br><span class="line">    ShowWindow(...)// 展示窗口</span><br><span class="line">    UpdateWindow(...)// 刷新窗口</span><br><span class="line">    // 进入消息循环</span><br><span class="line">    while (GetMessage(...)) &#123;</span><br><span class="line">        TranslateMessage(...);// 消息转换</span><br><span class="line">        DispatchMessage(...);// 消息分发</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a><em><strong>网络编程</strong></em></h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://zhiyanga.netlify.app">ZHIYANG</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zhiyanga.netlify.app/2023/05/20/CPP/windows%E7%BC%96%E7%A8%8B/">https://zhiyanga.netlify.app/2023/05/20/CPP/windows编程/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhiyanga.netlify.app" target="_blank">ZHIYANG的小空间站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/windows/">windows</a></div><div class="post_share"><div class="social-share" data-image="/img/head.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/06/08/CPP/qt/" title="qt知识点"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">qt知识点</div></div></a></div><div class="next-post pull-right"><a href="/2023/04/15/CPP/C++%E9%9D%A2%E8%AF%95%E9%A2%98/" title="C++八股"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C++八股</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ZHIYANG</div><div class="author-info__description">要充满干劲^.^</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/haust-Andy"><i class="fab fa-github"></i><span>来找我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/haust-Andy" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1481635832@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #a39ea2;"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1481635832&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fa-brands fa-qq" style="color: #badaf1;"></i></a><a class="social-icon" href="https://space.bilibili.com/23876943" target="_blank" title="BiliBili"><i class="fab fa-bilibili" style="color: #ff6698;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">正在尝试改变世界!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%89%E7%A7%8D%E5%BC%80%E5%8F%91%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.0.1.</span> <span class="toc-text">程序三种开发方式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.0.2.</span> <span class="toc-text">Windows数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E7%B1%BB"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">参数类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%A5%E6%9F%84%E7%B1%BB"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">句柄类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E6%B6%88%E6%81%AF%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.1.</span> <span class="toc-text">Windows消息循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E6%9D%A5%E6%BA%90%EF%BC%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">消息来源：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E5%B8%B8%E8%A7%81%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">消息常见定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E5%AE%9A%E4%B9%89%E6%B6%88%E6%81%AF"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">预定义消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B6%88%E6%81%AF-WM-USER-1"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">自定义消息 WM_USER + 1</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.3.</span> <span class="toc-text">消息结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MSG"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">MSG</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E9%AA%A8%E6%9E%B6"><span class="toc-number">1.1.4.</span> <span class="toc-text">程序骨架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">网络编程</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/11/tips/ubuntu%E9%85%8D%E7%BD%AEcpp%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5vs%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="ubuntu配置cpp远程连接vs开发环境">ubuntu配置cpp远程连接vs开发环境</a><time datetime="2024-01-10T16:00:00.000Z" title="发表于 2024-01-11 00:00:00">2024-01-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/17/CPP/%E4%B8%80%E7%A7%8Dwindows%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%86%99%E6%B3%95/" title="一种windows线程池写法">一种windows线程池写法</a><time datetime="2023-10-17T02:23:50.000Z" title="发表于 2023-10-17 10:23:50">2023-10-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/16/CPP/IO%E5%AE%8C%E6%88%90%E7%AB%AF%E5%8F%A3%EF%BC%88iocp%EF%BC%89/" title="完成端口（iocp）">完成端口（iocp）</a><time datetime="2023-10-16T07:42:22.000Z" title="发表于 2023-10-16 15:42:22">2023-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/13/CPP/cpp%E5%8E%9F%E5%AD%90%E5%8F%98%E9%87%8Fatomic%E8%AF%A6%E8%A7%A3/" title="cpp原子变量atomic详解">cpp原子变量atomic详解</a><time datetime="2023-10-13T00:57:34.000Z" title="发表于 2023-10-13 08:57:34">2023-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/11/tips/docker%E5%85%A5%E9%97%A8/" title="docker入门">docker入门</a><time datetime="2023-08-11T06:38:24.000Z" title="发表于 2023-08-11 14:38:24">2023-08-11</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/top.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By ZHIYANG</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">你好，欢迎来到我的世界！：）</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  function abcjsInit() {
+    function abcjsFn() {
+      for (let abcContainer of document.getElementsByClassName("abc-music-sheet")) {
+        ABCJS.renderAbc(abcContainer, abcContainer.innerHTML, {responsive: 'resize'})
+      }
+    }
+    
+    typeof ABCJS === 'object' ? abcjsFn()
+      : getScript('https://cdn.jsdelivr.net/npm/abcjs/dist/abcjs-basic-min.min.js').then(abcjsFn)
+  }
+
+  window.pjax ? abcjsInit() : document.addEventListener('DOMContentLoaded', abcjsInit)
+})()</script></div><script async src="https://npm.elemecdn.com/tzy-blog/lib/js/other/sakura.js"></script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="6,666,666666" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
