@@ -204,31 +204,6 @@
     
     
     <entry>
-      <title>application.properties和application.yml文件的区别：</title>
-      <link href="/2023/06/26/tips/application.properties%E5%92%8Capplication.yml%E6%96%87%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-      <url>/2023/06/26/tips/application.properties%E5%92%8Capplication.yml%E6%96%87%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="application-properties和application-yml文件的区别："><a href="#application-properties和application-yml文件的区别：" class="headerlink" title="application.properties和application.yml文件的区别："></a>application.properties和application.yml文件的区别：</h2><p>1、application.properties的优先级高于application.yml</p><p>【原因：当两者同时存在时，application.yml先执行，而application.properties后执行，后执行的application.properties文件会覆盖先执行的application.yml文件内容（只覆盖相同的内容）】</p><p>2、application.properties使用” &#x3D; “赋值，application.yml使用”  ：”赋值，且冒号与属性值之间必须有一个空格（属性:  属性值）</p><p>3、application.yml文件需要缩进时，只能使用空格键缩进，不能使用tab键</p><p>最后，application.yml文件以树型结构，其的可读性更高，结构清晰明了，建议使用application.yml<br>————————————————<br>版权声明：本文为CSDN博主「梅秃头」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_53376718/article/details/129877796">https://blog.csdn.net/qq_53376718/article/details/129877796</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 环境配置 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> springboot </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>实现vmware虚拟机和主机之间的文件传输</title>
       <link href="/2023/06/26/tips/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8C%E4%B8%BB%E6%9C%BA%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/"/>
       <url>/2023/06/26/tips/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8C%E4%B8%BB%E6%9C%BA%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/</url>
@@ -246,6 +221,31 @@
         <tags>
             
             <tag> vmware </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>application.properties和application.yml文件的区别：</title>
+      <link href="/2023/06/26/tips/application.properties%E5%92%8Capplication.yml%E6%96%87%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+      <url>/2023/06/26/tips/application.properties%E5%92%8Capplication.yml%E6%96%87%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="application-properties和application-yml文件的区别："><a href="#application-properties和application-yml文件的区别：" class="headerlink" title="application.properties和application.yml文件的区别："></a>application.properties和application.yml文件的区别：</h2><p>1、application.properties的优先级高于application.yml</p><p>【原因：当两者同时存在时，application.yml先执行，而application.properties后执行，后执行的application.properties文件会覆盖先执行的application.yml文件内容（只覆盖相同的内容）】</p><p>2、application.properties使用” &#x3D; “赋值，application.yml使用”  ：”赋值，且冒号与属性值之间必须有一个空格（属性:  属性值）</p><p>3、application.yml文件需要缩进时，只能使用空格键缩进，不能使用tab键</p><p>最后，application.yml文件以树型结构，其的可读性更高，结构清晰明了，建议使用application.yml<br>————————————————<br>版权声明：本文为CSDN博主「梅秃头」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_53376718/article/details/129877796">https://blog.csdn.net/qq_53376718/article/details/129877796</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境配置 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> springboot </tag>
             
         </tags>
       
@@ -279,31 +279,6 @@
     
     
     <entry>
-      <title>ubuntu的一些配置命令</title>
-      <link href="/2023/06/26/tips/%E8%99%9A%E6%8B%9F%E6%9C%BAubuntu%E5%88%9D%E5%A7%8B%E5%8C%96root%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/"/>
-      <url>/2023/06/26/tips/%E8%99%9A%E6%8B%9F%E6%9C%BAubuntu%E5%88%9D%E5%A7%8B%E5%8C%96root%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="虚拟机ubuntu初始化root用户密码"><a href="#虚拟机ubuntu初始化root用户密码" class="headerlink" title="虚拟机ubuntu初始化root用户密码"></a>虚拟机ubuntu初始化root用户密码</h1><p>第一步：Ctrl+Alt+T打开终端 <br><br>第二步：输入命令 sudo passwd <br><br>root <br><br>输入当前用户密码 <br><br>输入所想要设置的root密码 <br><br>再次输入root密码 <br><br>第三步：输入命令su <br><br>输入root密码即切换至root用户模式下 <br></p><h1 id="ssh-配置"><a href="#ssh-配置" class="headerlink" title="ssh 配置"></a>ssh 配置</h1><p><code>sudo apt install ssh</code><br><code>sudo systemctl status ssh</code></p><p><code>sudo apt install g++ gdb make cmake</code></p><h1 id="Ubuntu如何使用root用户远程登陆"><a href="#Ubuntu如何使用root用户远程登陆" class="headerlink" title="Ubuntu如何使用root用户远程登陆"></a>Ubuntu如何使用root用户远程登陆</h1><p>这是Ubuntu系统处于安全性的考虑；</p><p>我们不能使用root用户远程连接Ubuntu系统的原因是因为，系统内的&#x2F;etc&#x2F;ssh&#x2F;sshd_config配置文件内PermitRootLogin这一行为no决定了我们无法使用root用户远程登陆，所以我们只需要更改这个配置文件的内容</p><p>输入cat &#x2F;etc&#x2F;ssh&#x2F;ssh_config命令我们可以查看这个配置文件</p><p>可以看到PermitRootLogin yes  （这里我已经从no改成yes了）</p><p>三、具体操作</p><p>1、首先我们先启动VMware里面的Ubuntu系统</p><p>使用Xshell远程连接使用普通用户登陆</p><p>2、我们先为root用户设置一个登陆密码</p><p>输入sudo passwd root</p><p>提示我们输入当前用户的密码；</p><p>之后我们给root用户设置密码；</p><p>出现passwd: password updated successfully说明成功给root用户设置了密码</p><p>3、修改配置文件</p><p>就像我们之前提到的一样，无法远程登陆是因为配置文件的设定，所以我们应该修改配置文件实现root用户的远程登陆；</p><p>输入vim &#x2F;etc&#x2F;ssh&#x2F;sshd_config使用vim文本编辑器修改sshd_config这个配置文件</p><p>敲键盘i键进入插入模式，利用上下方向键找到PermitRootLogin的位置修改no为yes</p><p>敲键盘上的esc键退出修改，英文输入法下输入冒号键输入wq退出</p><p>4、重新启动ssh服务</p><p>上面我们已经完成了修改，此时输入命令 service ssh restart重启ssh服务即可</p><p>使用 su - root命令切换到root用户登陆</p><p>输入密码即可成功登陆</p><p>可以看到我们当前使用root用户成功登陆<br>————————————————<br>版权声明：本文为CSDN博主「蜜糖伴午茶」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/m0_63276793/article/details/134038194">https://blog.csdn.net/m0_63276793/article/details/134038194</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 环境配置 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> ubuntu </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>javaType 与 jdbcType对应关系：</title>
       <link href="/2023/06/26/tips/javaType%20%E4%B8%8E%20jdbcType%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB/"/>
       <url>/2023/06/26/tips/javaType%20%E4%B8%8E%20jdbcType%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB/</url>
@@ -321,6 +296,31 @@
         <tags>
             
             <tag> springboot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ubuntu的一些配置命令</title>
+      <link href="/2023/06/26/tips/%E8%99%9A%E6%8B%9F%E6%9C%BAubuntu%E5%88%9D%E5%A7%8B%E5%8C%96root%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/"/>
+      <url>/2023/06/26/tips/%E8%99%9A%E6%8B%9F%E6%9C%BAubuntu%E5%88%9D%E5%A7%8B%E5%8C%96root%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="虚拟机ubuntu初始化root用户密码"><a href="#虚拟机ubuntu初始化root用户密码" class="headerlink" title="虚拟机ubuntu初始化root用户密码"></a>虚拟机ubuntu初始化root用户密码</h1><p>第一步：Ctrl+Alt+T打开终端 <br><br>第二步：输入命令 sudo passwd <br><br>root <br><br>输入当前用户密码 <br><br>输入所想要设置的root密码 <br><br>再次输入root密码 <br><br>第三步：输入命令su <br><br>输入root密码即切换至root用户模式下 <br></p><h1 id="ssh-配置"><a href="#ssh-配置" class="headerlink" title="ssh 配置"></a>ssh 配置</h1><p><code>sudo apt install ssh</code><br><code>sudo systemctl status ssh</code></p><p><code>sudo apt install g++ gdb make cmake</code></p><h1 id="Ubuntu如何使用root用户远程登陆"><a href="#Ubuntu如何使用root用户远程登陆" class="headerlink" title="Ubuntu如何使用root用户远程登陆"></a>Ubuntu如何使用root用户远程登陆</h1><p>这是Ubuntu系统处于安全性的考虑；</p><p>我们不能使用root用户远程连接Ubuntu系统的原因是因为，系统内的&#x2F;etc&#x2F;ssh&#x2F;sshd_config配置文件内PermitRootLogin这一行为no决定了我们无法使用root用户远程登陆，所以我们只需要更改这个配置文件的内容</p><p>输入cat &#x2F;etc&#x2F;ssh&#x2F;ssh_config命令我们可以查看这个配置文件</p><p>可以看到PermitRootLogin yes  （这里我已经从no改成yes了）</p><p>三、具体操作</p><p>1、首先我们先启动VMware里面的Ubuntu系统</p><p>使用Xshell远程连接使用普通用户登陆</p><p>2、我们先为root用户设置一个登陆密码</p><p>输入sudo passwd root</p><p>提示我们输入当前用户的密码；</p><p>之后我们给root用户设置密码；</p><p>出现passwd: password updated successfully说明成功给root用户设置了密码</p><p>3、修改配置文件</p><p>就像我们之前提到的一样，无法远程登陆是因为配置文件的设定，所以我们应该修改配置文件实现root用户的远程登陆；</p><p>输入vim &#x2F;etc&#x2F;ssh&#x2F;sshd_config使用vim文本编辑器修改sshd_config这个配置文件</p><p>敲键盘i键进入插入模式，利用上下方向键找到PermitRootLogin的位置修改no为yes</p><p>敲键盘上的esc键退出修改，英文输入法下输入冒号键输入wq退出</p><p>4、重新启动ssh服务</p><p>上面我们已经完成了修改，此时输入命令 service ssh restart重启ssh服务即可</p><p>使用 su - root命令切换到root用户登陆</p><p>输入密码即可成功登陆</p><p>可以看到我们当前使用root用户成功登陆<br>————————————————<br>版权声明：本文为CSDN博主「蜜糖伴午茶」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/m0_63276793/article/details/134038194">https://blog.csdn.net/m0_63276793/article/details/134038194</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境配置 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ubuntu </tag>
             
         </tags>
       
@@ -354,31 +354,6 @@
     
     
     <entry>
-      <title>spark知识点</title>
-      <link href="/2023/06/19/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/"/>
-      <url>/2023/06/19/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="spark核心模块"><a href="#spark核心模块" class="headerlink" title="spark核心模块"></a>spark核心模块</h2><p>spark core 提供核心功能，其他功能在此基础上拓展 <br><br>spark sql 操作结构化数据的组件 <br><br>spark streaming 针对实时数据进行流式计算的组件 <br><br>spark mlib 机器学习算法库，提供模型评估、数据导入等功能和一些底层机器学习原语， <br><br>spark graphx 面向图计算提供的框架与算法库 <br></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 大数据 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> spark </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Hadoop是一个海量数据存储和计算的平台</title>
       <link href="/2023/06/19/%E5%A4%A7%E6%95%B0%E6%8D%AE/Hadoop3/"/>
       <url>/2023/06/19/%E5%A4%A7%E6%95%B0%E6%8D%AE/Hadoop3/</url>
@@ -396,6 +371,31 @@
         <tags>
             
             <tag> Hadoop </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>spark知识点</title>
+      <link href="/2023/06/19/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/"/>
+      <url>/2023/06/19/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="spark核心模块"><a href="#spark核心模块" class="headerlink" title="spark核心模块"></a>spark核心模块</h2><p>spark core 提供核心功能，其他功能在此基础上拓展 <br><br>spark sql 操作结构化数据的组件 <br><br>spark streaming 针对实时数据进行流式计算的组件 <br><br>spark mlib 机器学习算法库，提供模型评估、数据导入等功能和一些底层机器学习原语， <br><br>spark graphx 面向图计算提供的框架与算法库 <br></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 大数据 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> spark </tag>
             
         </tags>
       
